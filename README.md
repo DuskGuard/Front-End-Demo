@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I have gone from not being able to write a simple HTML5 page, to writing adept JS and JS React. My Front-End Skills are demonstated in this project, so feel free to have a look!
 
 ## Available Scripts
 
