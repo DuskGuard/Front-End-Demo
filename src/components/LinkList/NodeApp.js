@@ -19,6 +19,8 @@ class NodeApp extends React.Component{
             nextnodeName:"",
             nextnodeID:0,
             totalNodes:0,
+            lifo:"",
+            fifo:"",
         }
         this.newnodeAmount=0;
         this.newnodeName="";
@@ -42,8 +44,12 @@ class NodeApp extends React.Component{
         console.log(this.controller)
         this.controller.insertNode(this.newnodeName,this.newnodeAmount);
         let newtotal= this.controller.totalAmount();
+        let newlifo = this.controller.lifo();
+        let newfifo = this.controller.fifo();
         this.setState({
-            totalAmount: newtotal
+            totalAmount: newtotal,
+            lifo: newlifo,
+            fifo: newfifo,
         })
         this.setState({
             totalNodes: this.controller.counter,
@@ -200,20 +206,23 @@ class NodeApp extends React.Component{
                             <input className="link-main-input" type="text" onChange={this.handleChange} id="input1" placeholder="New Node Name"></input>
                             <input className="link-main-input" type="number" onChange={this.handleChange} id="input2" placeholder="New Node Amount"></input>
                             <button  className="link-main-btn" onClick={this.addNode}>Insert</button>
-                            <h3 className="link-main-h3">Total Amount: {this.state.totalAmount} | Total Nodes: {this.state.totalNodes}</h3>        
+                            <h3 className="link-main-h3">Total Amount: {this.state.totalAmount} | Total Nodes: {this.state.totalNodes}</h3>  
+                            <h3 className="link-main-h3">FIFO: {this.state.fifo}</h3>        
+                            <h3 className="link-main-h3"> LIFO: {this.state.lifo}</h3>        
                         </div>
                     </div>
+                     {this.controller.temp ===null && this.controller.anchor ===null ? null :
                      <div className="link-control">
                         <button className="link-control-btn" onClick={this.firstNode}>First</button>
                         <button className="link-control-btn" onClick={this.prevNode}>Prev</button>
                         <button className="link-control-btn" onClick={this.removeNode}>Delete Node</button>
                         <button className="link-control-btn" onClick={this.nextNode}>Next</button>
                         <button className="link-control-btn" onClick={this.lastNode}>Last</button>
-                    </div> 
+                     </div>} 
                 </div>   
                 <div className="link-display-border">
                     <h2 className="link-display-h1">Interactive Map</h2>
-                    <NodeDisplay state={this.state}/>
+                    {this.controller.temp ===null && this.controller.anchor ===null ? <div style={{height:"150px"}}></div> : <NodeDisplay state={this.state}/>}
                 </div> 
             </div>
         )

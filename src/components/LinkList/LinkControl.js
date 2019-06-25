@@ -139,7 +139,7 @@ class LinkControl extends Component{
         //return node  info with counter-1
         let lifoname= this.lifoName;
         let lifoamount= this.lifoAmount;
-        let stringlifo= String("The First Node In Is "+lifoname+" w/ "+lifoamount);
+        let stringlifo= String("The Last Node In Is "+lifoname+" w/ "+lifoamount);
         return stringlifo;
     }
     fifo(){

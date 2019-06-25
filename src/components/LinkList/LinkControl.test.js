@@ -2,6 +2,14 @@ import Node from './Node'
 import LinkControl from './LinkControl'
 //first node in sequence cannot be replaced
 //direction of flow is downwards to the tail
+test("no nodes",()=>{
+    let controller= new LinkControl();
+    expect(controller.current).toBe(null);
+    //wrote intitally with head and tail instead of anchor and temp to fail test first
+    expect(controller.anchor).toBe(null);
+    expect(controller.temp).toBe(null);
+})
+
 test("a Single Node '(a)'       ",()=>{
     let controller= new LinkControl();
     expect(controller.current).toBe(null);
@@ -168,12 +176,7 @@ test("test fifo and lifo",()=>{
     expect(controller.current.subject).toBe("Trent");
     controller.insertNode("Luis",20);
     expect(controller.current.subject).toBe("Luis");
-    expect(controller.totalAmount()).toBe(30);
     controller.insertNode("Han",70);
-        controller.back();
-        controller.back();
-        controller.back();
-     expect(controller.current.subject).toBe("Head")
-        expect(controller.fifo()).toEqual("The First Node In Is Trent w/ 10")
-        expect(controller.lifo()).toEqual("The First Node In Is Han w/ 70")
+    expect(controller.fifo()).toEqual("The First Node In Is Trent w/ 10")
+    expect(controller.lifo()).toEqual("The Last Node In Is Han w/ 70")
 })
